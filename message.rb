@@ -1,5 +1,6 @@
 class Message
   attr_writer :create_message
+  attr_reader :show_messages
   
   def initialize
     @messages = {}
@@ -14,16 +15,21 @@ class Message
     content = gets.chomp
     message = [content, time]
     @messages[title] = message 
-    puts ".:MESSAGE CREATED:."
+    puts ".:MESSAGE CREATED:.\n\n"
   end
   
   def show_messages
-    puts "MESSAGES"
-    
+    puts "List of Messages"
+    puts "-" * 10
+    @messages.each do |title, content|
+      puts "#{title} :: #{content[0]}"
+      puts "Created at: #{content[1]}\n\n"
+    end
   end
 end
 
 mail = Message.new
 mail.create_message
-
+mail.create_message
+mail.show_messages
 
